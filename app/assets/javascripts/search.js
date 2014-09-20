@@ -29,15 +29,15 @@ var relatedArtistSearch = function() {
       // the AJAX request 
       // the artist text gets appended to the endpoint
       $.getJSON("https://api.spotify.com/v1/search?q=" + artist + "&type=artist", function(result) {
-        // first, obtain the Spotify Artist ID
-        // console.log(result.artists.items[0].name);
         n = {};
         d3.select("svg").remove()
         var artistId = result.artists.items[0].id;
         var artistName = result.artists.items[0].name
+        var artistImage = result.artists.items[0].images[1].url
+        var artistUrl = result.artists.items[0].external_urls.spotify;
         console.log(artistName);
         if (artistId) {
-          n['0'] = {artist:artistName};
+          n['0'] = {artist:artistName, url:artistUrl, image:artistImage};
           console.log(n);
         } else {
           console.log('artist not found');
@@ -48,13 +48,13 @@ var relatedArtistSearch = function() {
           // Loops through the results and prints out each Artist's name
           for (var i = 0; i < 20; i++) {
             var a = result.artists[i].name;
-            n[(i+1).toString()] = {artist:a};
+            var img = result.artists[i].images[1].url
+            var u = result.artists[i].external_urls.spotify;
+            n[(i+1).toString()] = {artist:a, url:u, image:img};
           } 
           console.log(n);
-
           // if user is authenticated, send in their user_id
           // otherwise, just save this array n
-
           $.post('http://localhost:3000/search_histories', {search_history:{results_attributes:n}}, function(status) {
             console.log(status);
           });
@@ -180,9 +180,11 @@ var relatedArtistSearch = function() {
         d3.select("svg").remove()
         var artistId = result.artists.items[0].id;
         var artistName = result.artists.items[0].name
+        var artistImage = result.artists.items[0].images[1].url
+        var artistUrl = result.artists.items[0].external_urls.spotify;
         console.log(artistName);
         if (artistId) {
-          n.push(artistName);
+          n['0'] = {artist:artistName, url:artistUrl, image:artistImage};
           console.log(n);
         } else {
           console.log('artist not found');
@@ -193,40 +195,24 @@ var relatedArtistSearch = function() {
           // Loops through the results and prints out each Artist's name
           for (var i = 0; i < 20; i++) {
             var a = result.artists[i].name;
-            
-            n.push(a);
+            var img = result.artists[i].images[1].url
+            var u = result.artists[i].external_urls.spotify;
+            n[(i+1).toString()] = {artist:a, url:u, image:img};
           } 
           console.log(n);
-
-          //The D3 Stuff 
-
+          // if user is authenticated, send in their user_id
+          // otherwise, just save this array n
+          $.post('http://localhost:3000/search_histories', {search_history:{results_attributes:n}}, function(status) {
+            console.log(status);
+          });
+          //The D3 Stuff
+          var nodes = [];
+            for (var key in n)
+              nodes.push({ name: n[key].artist }) 
           // initial data
           var graph = { 
             // Nodes gets populated with values from the AJAX call
-            nodes: [
-              { name: n[0] },
-              { name: n[1] },
-              { name: n[2] },
-              { name: n[3] },
-              { name: n[4] },
-              { name: n[5] },
-              { name: n[6] },
-              { name: n[7] },
-              { name: n[8] },
-              { name: n[9] },
-              { name: n[10] },
-              { name: n[11] },
-              { name: n[12] },
-              { name: n[13] },
-              { name: n[14] },
-              { name: n[15] },
-              { name: n[16] },
-              { name: n[17] },
-              { name: n[18] },
-              { name: n[19] },
-              { name: n[20] }
-
-              ], // this must be 21 objects exactly
+            nodes: nodes, // this must be 21 objects exactly
             links: [
               { source: 0, target: 1 },
               { source: 0, target: 2 },

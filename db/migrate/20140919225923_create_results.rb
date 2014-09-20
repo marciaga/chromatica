@@ -3,7 +3,7 @@ class CreateResults < ActiveRecord::Migration
     create_table :results do |t|
       t.string :artist
       t.references :search_history, index: true
-
+      
       t.timestamps
     end
 
