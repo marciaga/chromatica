@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920220304) do
+ActiveRecord::Schema.define(version: 20140921173959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140920220304) do
     t.datetime "updated_at"
     t.string   "url"
     t.string   "image"
+    t.string   "spotify_id"
   end
 
   add_index "results", ["search_history_id"], name: "index_results_on_search_history_id", using: :btree

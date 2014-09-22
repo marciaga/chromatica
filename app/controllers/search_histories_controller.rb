@@ -12,7 +12,7 @@ class SearchHistoriesController < ApplicationController
 	end
 private
 	def search_histories_params
-		params.require(:search_history).permit(:results_attributes => [:artist, :url, :image, :id])
+		params.require(:search_history).permit(:results_attributes => [:artist, :url, :image, :spotify_id, :id])
 	end	
 end
 

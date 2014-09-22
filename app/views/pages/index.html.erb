@@ -3,17 +3,22 @@
 
 <!-- When user is logged in show them their search history -->
 <% if current_user %>
+	<% artist_list %>
 	<ul>
-	
-		
+		<% @results.each do |n, i, u, s| %>
+			<li><a target="_blank" href="<%= u %>"> <%= n %></a> <br/>
+			<img width="300" height="300" src="<%= i %>"/><br/>
+			<!-- button such that on click sends the SId out and retrieves -->
+			<input type="submit" value="Listen" onclick="showValue('<%= s %>')" />
+			<!--  -->
+			</li>
+		<% end %> 	
 	</ul>
 <% end %> 
 
-
- <!-- The Artist Search function -->
-    <script type="text/javascript">
-      $(function() {
-        relatedArtistSearch.init();
-      });
-    </script>
-
+<!-- The Artist Search function -->
+<script type="text/javascript">
+  $(function() {
+    relatedArtistSearch.init();
+  });
+</script>
