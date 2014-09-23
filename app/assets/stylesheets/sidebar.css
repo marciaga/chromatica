@@ -1,0 +1,19 @@
+/* fix the aspect ratio of the artist photos since all the links are slightly differnt sizes*/
+.artist-photos {
+  width:70%;
+  height:auto;
+}
+
+#slide-panel {
+    width:300px;
+    float: right;
+    height:100%;
+    padding:10px;
+    background:#000;
+    margin-right:-350px;
+}
+#opener {
+    float:left;
+    margin:-10px 0px 0px -40px;
+    border-radius:0;
+}

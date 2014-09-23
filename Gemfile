@@ -30,7 +30,8 @@ gem 'omniauth'
 gem 'omniauth-spotify'
 
 gem 'bootstrap-sass'
-gem "kaminari"
+
+gem 'will_paginate', '~> 3.0'
 
 group :test, :development do 
 	gem 'pry-rails'
