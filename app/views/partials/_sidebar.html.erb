@@ -1,23 +1,21 @@
 <!-- When user is logged in show them their search history -->
 <div id="slide-panel">
 	<a href="#" class="btn btn-danger" id="opener"></a>
- <!-- button that advances pages -->
- <!-- every time i'm clicked, increment by 21 -->
-	<%= button_to "Next Page", {:action => 'next_page'} %>
-	<%= button_to "Previous Page", {:action => 'previous_page'} %>
-	<%= button_to "Reset", {:action => 'reset_count'} %>
-	<% if @results %>
+
+	<%= will_paginate @results %>
+	
+	
 		<ul>
-			<% @results.each do |n, i, u, s| %>
-				<li><a target="_blank" href="<%= u %>"> <%= n %></a> <br/>
-				<img class="artist-photos" width="200" height="200" src="<%= i %>"/><br/>
+			<% @results.each do |item| %>
+				<li><a target="_blank" href="<%= item['url'] %>"> <%= item['artist'] %></a> <br/>
+				<img class="artist-photos" width="200" height="200" src="<%= item['image'] %>"/><br/>
 				<!-- button such that on click sends the SId out and retrieves -->
-				<input type="submit" value="Listen" onclick="listen('<%= s %>')" />
-				<input type="submit" value="Add to Library" onclick="addTrack('<%= current_user.oauth_token %>', '<%= s %>')" />
+				<input type="submit" value="Listen" onclick="listen('<%= item['spotify_id'] %>')" />
+				<input type="submit" value="Add to Library" onclick="addTrack('<%= current_user.oauth_token %>', '<%= item['spotify_id'] %>')" />
 				</li>
 			<% end %> 	
 		</ul>
-	<% end %>
+
 </div>
 <script>
 	$('#opener').on('click', function() {		
