@@ -91,7 +91,7 @@ var relatedArtistSearch = function() {
           };
           // console.log(graph);
           // Width and height
-          var w = 960;
+          var w = 750;
           var h = 500;
            // define colors
           var color = d3.scale.category20c();
@@ -101,7 +101,7 @@ var relatedArtistSearch = function() {
             .linkDistance(200) // length of the edges bw nodes
             .charge(-600) // repel velocity
           // create an SVG element
-          var svg = d3.select("body")
+          var svg = d3.select("#graph")
           .append("svg")
           .attr("width", w)
           .attr("height", h);
@@ -230,7 +230,7 @@ var relatedArtistSearch = function() {
           }; // closes out graph array
           console.log(graph);
           // Width and height
-          var w = 960;
+          var w = 750;
           var h = 500;
            // define colors
           var color = d3.scale.category20c();
@@ -240,7 +240,7 @@ var relatedArtistSearch = function() {
             .linkDistance(200) // length of the edges bw nodes
             .charge(-600) // repel velocity
           // create an SVG element
-          var svg = d3.select("body")
+          var svg = d3.select("#graph")
           .append("svg")
           .attr("width", w)
           .attr("height", h);

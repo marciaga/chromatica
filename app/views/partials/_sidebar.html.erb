@@ -1,31 +1,21 @@
 <!-- When user is logged in show them their search history -->
-<div id="slide-panel">
-	<a href="#" class="btn btn-danger" id="opener"></a>
 
-	<%= will_paginate @results %>
-	
-	
-		<ul>
-			<% @results.each do |item| %>
-				<li><a target="_blank" href="<%= item['url'] %>"> <%= item['artist'] %></a> <br/>
-				<img class="artist-photos" width="200" height="200" src="<%= item['image'] %>"/><br/>
-				<!-- button such that on click sends the SId out and retrieves -->
-				<input type="submit" value="Listen" onclick="listen('<%= item['spotify_id'] %>')" />
-				<input type="submit" value="Add to Library" onclick="addTrack('<%= current_user.oauth_token %>', '<%= item['spotify_id'] %>')" />
-				</li>
-			<% end %> 	
-		</ul>
+<!-- <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#history">
+ Search History
+</button>
+<div id="history" class="collapse out"> -->
 
-</div>
-<script>
-	$('#opener').on('click', function() {		
-		var panel = $('#slide-panel');
-		if (panel.hasClass("visible")) {
-			panel.removeClass('visible').animate({'margin-right':'-350px'});
-		} else {
-			panel.addClass('visible').animate({'margin-right':'-46px'});
 
-		}	
-		return false;	
-	});   
-</script>
+<%= will_paginate @results %>	
+<ul>
+	<% @results.each do |item| %>
+		<li><a target="_blank" href="<%= item['url'] %>"> <%= item['artist'] %></a> <br/>
+		<img class="artist-photos" width="200" height="200" src="<%= item['image'] %>"/><br/>
+		<!-- button such that on click sends the SId out and retrieves -->
+		<input type="submit" value="Listen" onclick="listen('<%= item['spotify_id'] %>')" />
+		<input type="submit" value="Add to Library" onclick="addTrack('<%= current_user.oauth_token %>', '<%= item['spotify_id'] %>')" />
+		</li>
+	<% end %> 	
+</ul>
+
+
