@@ -185,7 +185,7 @@ var relatedArtistSearch = function() {
           } 
           // if user is authenticated, send in their user_id
           // otherwise, just save this array n
-          $.post('http://chromatica.herokuapp.com/search_histories', {search_history:{results_attributes:n}}, function(status) {
+          $.post('/search_histories', {search_history:{results_attributes:n}}, function(status) {
           });
           //The D3 Stuff
           var nodes = [];
