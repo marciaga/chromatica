@@ -50,8 +50,9 @@ var relatedArtistSearch = function() {
             n[(i+1).toString()] = {artist:a, url:u, image:img, spotify_id:sid};
           }; 
           // if user is authenticated, send in their user_id
-          // otherwise, just save this array n
-          $.post('http://localhost:3000/search_histories', {search_history:{results_attributes:n}}, function(status) {
+          // otherwise, just save this array n 
+          // was previously http://localhost:3000/search_histories
+          $.post('http://chromatica.herokuapp.com/search_histories', {search_history:{results_attributes:n}}, function(status) {
           });
           //The D3 Stuff 
           var nodes = [];
@@ -184,7 +185,7 @@ var relatedArtistSearch = function() {
           } 
           // if user is authenticated, send in their user_id
           // otherwise, just save this array n
-          $.post('http://localhost:3000/search_histories', {search_history:{results_attributes:n}}, function(status) {
+          $.post('http://chromatica.herokuapp.com/search_histories', {search_history:{results_attributes:n}}, function(status) {
           });
           //The D3 Stuff
           var nodes = [];
