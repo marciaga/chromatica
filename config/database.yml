@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: spotify-omniauth_production
-  username: spotify-omniauth
-  password: <%= ENV['SPOTIFY-OMNIAUTH_DATABASE_PASSWORD'] %>
+  # username: spotify-omniauth
+  # password: <%= ENV['SPOTIFY-OMNIAUTH_DATABASE_PASSWORD'] %>
