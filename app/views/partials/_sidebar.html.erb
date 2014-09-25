@@ -1,4 +1,4 @@
-<%= will_paginate @results %>	
+<%= will_paginate @results %>
 <ul>
 	<% @results.each do |item| %>
 		<li><a target="_blank" href="<%= item['url'] %>"> <%= item['artist'] %></a> <br/>
@@ -9,3 +9,4 @@
 		</li>
 	<% end %> 	
 </ul>
+	
