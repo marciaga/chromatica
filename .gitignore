@@ -16,7 +16,7 @@
 /tmp
 
 # Ignore API keys
-config/initializers/omniauth.rb
+
 
 
 # Ignore API Keys contained in the helper method
