@@ -21,3 +21,4 @@ config/secrets.yml
 
 # Ignore API Keys contained in the helper method
 app/controllers/application_controller.rb
+
