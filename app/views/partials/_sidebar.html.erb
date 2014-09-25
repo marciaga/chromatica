@@ -1,11 +1,3 @@
-<!-- When user is logged in show them their search history -->
-
-<!-- <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#history">
- Search History
-</button>
-<div id="history" class="collapse out"> -->
-
-
 <%= will_paginate @results %>	
 <ul>
 	<% @results.each do |item| %>
@@ -17,5 +9,3 @@
 		</li>
 	<% end %> 	
 </ul>
-
-

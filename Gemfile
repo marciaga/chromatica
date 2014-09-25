@@ -33,6 +33,7 @@ gem 'bootstrap-sass'
 
 gem 'will_paginate', '~> 3.0'
 
+gem 'httparty', '~> 0.13.1'
 
 group :test, :development do 
 	gem 'pry-rails'

@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 	has_many :search_histories
-	
 	def self.from_omniauth(auth)
 		where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
 			user.provider = auth.provider

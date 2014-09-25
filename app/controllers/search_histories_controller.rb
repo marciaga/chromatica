@@ -1,5 +1,4 @@
 class SearchHistoriesController < ApplicationController	
-
 	def create 
 		if current_user
 			user = User.where(params[:user_id])

@@ -22,6 +22,8 @@ var relatedArtistSearch = function() {
     // to spotify's tracks Endpoint and appending the artist name to it    
     $findArtist.click(function(e) {
       e.preventDefault();
+      // jquery hide the image element in the splash partial
+      $("#splash img").hide();  
       // a variable that gets the artist text from the input
       var artist = $artist.val();
       // the AJAX request 
@@ -33,17 +35,12 @@ var relatedArtistSearch = function() {
         var artistName = result.artists.items[0].name;
         var artistImage = result.artists.items[0].images[1].url;
         var artistUrl = result.artists.items[0].external_urls.spotify;
-        console.log(artistName); //1
         if (artistId) {
           n['0'] = {artist:artistName, url:artistUrl, image:artistImage, spotify_id:artistId};
-          console.log(n); // 
         } else {
-          console.log('artist not found');
         };
         // Next, do another GET request to obtain related artists
         $.getJSON("https://api.spotify.com/v1/artists/" + artistId + "/related-artists", function(result) {
-          console.log(result); //result is an object with an array of related artist objects
-          console.log(n); // n should be 21 objects
           // Loops through result
           for (var i = 0; i < 20; i++) {
             var a = result.artists[i].name;
@@ -52,7 +49,6 @@ var relatedArtistSearch = function() {
             var sid = result.artists[i].id;
             n[(i+1).toString()] = {artist:a, url:u, image:img, spotify_id:sid};
           }; 
-          console.log(n); //4
           // if user is authenticated, send in their user_id
           // otherwise, just save this array n
           $.post('http://localhost:3000/search_histories', {search_history:{results_attributes:n}}, function(status) {
@@ -165,7 +161,6 @@ var relatedArtistSearch = function() {
       // the artist text gets appended to the endpoint
       $.getJSON("https://api.spotify.com/v1/search?q=" + artist + "&type=artist", function(result) {
         // first, obtain the Spotify Artist ID
-        // console.log(result.artists.items[0].name);
         n = {};
         d3.select("svg").remove()
         var artistId = result.artists.items[0].id;
@@ -175,13 +170,10 @@ var relatedArtistSearch = function() {
         console.log(artistName);
         if (artistId) {
           n['0'] = {artist:artistName, url:artistUrl, image:artistImage, spotify_id:artistId};
-          console.log(n);
         } else {
-          console.log('artist not found');
         };
         // Next, do another GET request to obtain related artists
         $.getJSON("https://api.spotify.com/v1/artists/" + artistId + "/related-artists", function(result) {
-          console.log(result);
           // Loops through the results and prints out each Artist's name
           for (var i = 0; i < 20; i++) {
             var a = result.artists[i].name;
@@ -190,11 +182,9 @@ var relatedArtistSearch = function() {
             var sid = result.artists[i].id;
             n[(i+1).toString()] = {artist:a, url:u, image:img, spotify_id:sid};
           } 
-          console.log(n);
           // if user is authenticated, send in their user_id
           // otherwise, just save this array n
           $.post('http://localhost:3000/search_histories', {search_history:{results_attributes:n}}, function(status) {
-            console.log(status);
           });
           //The D3 Stuff
           var nodes = [];
@@ -228,7 +218,6 @@ var relatedArtistSearch = function() {
               { source: 0, target: 20 }
             ]
           }; // closes out graph array
-          console.log(graph);
           // Width and height
           var w = 750;
           var h = 500;
@@ -273,7 +262,6 @@ var relatedArtistSearch = function() {
             var labels = gnodes.append("text")
               .on('click', nodeClick)
               .text(function(d) { return d.name; });
-            // console.log(labels);
             // every time you tick, take the new x/y values and update in the DOM
             force.on("tick", function() {
               link.attr("x1", function(d) {

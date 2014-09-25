@@ -1,22 +1,24 @@
-<!-- This is the root page, which will be the home page with the app logo/graphic -->
-<!-- When a search is initiated, the graph page will replace this  -->
-<!-- The Artist Search function -->
 <!-- graph gets rendered below -->
 <div class="row">
 	<div class="col-lg-12">
 		<div class="row">
+			<% if !current_user %>
+				<%= render 'partials/splash' %>
+			<% end %>
 		  <div class="col-md-9 centered">
 		  	<div id="graph">
 		  	</div>
 		  </div>
-		  <div class="col-md-3 centered history" >
-					<% if current_user %>
+				<% if current_user %>
+					<div id="searches" class="col-md-3 centered history" >
+						<% auth_token_check %>
 						<%= render "partials/sidebar" %>
-					<% end %>
-			</div>
+					</div>
+				<% end %>
 		</div>
 	</div>
 </div>
+<!-- initializes the search function -->
 <script type="text/javascript">
   $(function() {
     relatedArtistSearch.init();

@@ -16,3 +16,10 @@
 //= require bootstrap
 //= require_tree ../../../vendor/assets/javascripts/
 //= require_tree .
+// function to handle the AJAX pagination
+$(function(){
+	$("#searches").on("click", '.pagination a', function() {
+		$.getScript(this.href);
+		return false;
+	});
+});
