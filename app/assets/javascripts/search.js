@@ -160,7 +160,7 @@ var relatedArtistSearch = function() {
         n = {};
         artistId = result.artists.items[0].id;
         artistName = result.artists.items[0].name;
-        artistImage = result.artists.items[0].images[1].url ? result.artists.items[0].images[1].url :  'http://placehold.it/300&text=no+image+found';
+        artistImage = result.artists.items[0].images[1] ? result.artists.items[0].images[1].url :  'http://placehold.it/300&text=no+image+found';
 
         artistUrl = result.artists.items[0].external_urls.spotify;
 
