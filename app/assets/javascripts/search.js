@@ -176,7 +176,13 @@ var relatedArtistSearch = function() {
 
           for (var i = 0; i < 20; i++) {
             artistName = result.artists[i].name;
-            artistImage = result.artists[i].images[1] ? result.artists[i].images[1].url : 'http://placehold.it/300&text=no+image+found';
+
+            if (result.artists[i].images[1].url === undefined) {
+              artistImage ='http://placehold.it/300&text=no+image+found';
+            } else {
+                artistImage = result.artists[i].images[1].url;
+            }
+
             artistUrl = result.artists[i].external_urls.spotify;
             artistId = result.artists[i].id;
             n[(i+1).toString()] = {artist: artistName, url: artistUrl, image: artistImage, spotify_id: artistId};
