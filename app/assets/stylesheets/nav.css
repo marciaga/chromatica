@@ -12,3 +12,6 @@ text {
   pointer-events: none;
 }
 
+.navbar-brand img {
+  display: inline-block;
+}
