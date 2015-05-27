@@ -135,16 +135,16 @@ var relatedArtistSearch = function() {
       $artist = $context.find('#artist');
       $findArtist = $context.find('#findArtist');
       $artistSearch = $context.find('#artistSearch');
-      // this draws the focus to the artist search box
+
       $artist.focus();
-      // this prevents the default behavior of the form
+
       $artistSearch.submit(function(event) {
         event.preventDefault();
       });
 
       if (!$artist.val()) { return; }
       artist = $artist.val();
-      //  hide the image element in the splash partial
+
       $("#splash img").hide();
 
       ajaxCalls(artist);
