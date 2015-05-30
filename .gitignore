@@ -17,6 +17,7 @@
 
 # Ignore API keys
 
+/config/environments/development.rb
 
 
 # Ignore API Keys contained in the helper method
