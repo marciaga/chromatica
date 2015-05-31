@@ -1,12 +1,10 @@
 <%= will_paginate @results %>
 <ul>
 	<% @results.each do |item| %>
-		<li><a target="_blank" href="<%= item['url'] %>"> <%= item['artist'] %></a> <br/>
+		<li class="text-center"><a target="_blank" href="<%= item['url'] %>"> <%= item['artist'] %></a> <br/>
 		<img class="artist-photos" width="200" height="200" src="<%= item['image'] %>"/><br/>
-		<!-- button such that on click sends the SId out and retrieves -->
 		<input type="submit" value="Listen" onclick="listen('<%= item['spotify_id'] %>')" />
 		<input type="submit" value="Add to Library" onclick="addTrack('<%= current_user.oauth_token %>', '<%= item['spotify_id'] %>')" />
 		</li>
-	<% end %> 	
+	<% end %>
 </ul>
-	

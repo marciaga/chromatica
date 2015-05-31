@@ -1,19 +1,22 @@
 /* fix the aspect ratio of the artist photos since all the links are slightly differnt sizes*/
 .artist-photos {
-  width:70%;
-  height:auto;
+  width: 70%;
+  height: auto;
 }
 
 .history {
-	width: 100%;
   height: 550px;
-  padding:10px;
-  background:#999;
+  padding: 10px;
+  background: #999;
   overflow: scroll;
 }
 
 .history a {
 	color: black;
+}
+
+.history ul {
+  padding-left: 0;
 }
 
 .history li {
